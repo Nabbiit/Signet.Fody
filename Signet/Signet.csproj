@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>Signet</AssemblyName>
+    <RootNamespace>Signet</RootNamespace>
+    <TargetFrameworks>net452;netstandard2.0</TargetFrameworks>
+    <AssemblyOriginatorKeyFile>Signet.pfx</AssemblyOriginatorKeyFile>
+    <PackageId>Signet.Fody</PackageId>
+    <Description>使用来自 Git 或 SVN 的版本信息填充 AssemblyInformationalVersionAttribute 特性。</Description>
+    <PackageIcon>https://raw.githubusercontent.com/zys529/Signet.Fody/master/Signet.Fody.png</PackageIcon>
+    <PackageProjectUrl>https://github.com/zys529/Signet.Fody</PackageProjectUrl>
+    <PackageOutputPath>$(SolutionDir)NuGets</PackageOutputPath>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageTags>Fody, Signet</PackageTags>
+    <NoPackageAnalysis>true</NoPackageAnalysis>
+    <PackageReleaseNotes>使用来自 Git 或 SVN 的版本信息填充 AssemblyInformationalVersionAttribute 特性。</PackageReleaseNotes>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Fody" Version="6.2.4" PrivateAssets="none" />
+    <PackageReference Include="FodyPackaging" Version="6.2.4" PrivateAssets="All" />
+  </ItemGroup>
+</Project>

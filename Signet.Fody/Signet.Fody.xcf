@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<xs:complexType xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:attribute name="From">
+    <xs:annotation>
+      <xs:documentation>指定版本信息的来源（默认为：SVN）。</xs:documentation>
+    </xs:annotation>
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="Git" />
+        <xs:enumeration value="SVN" />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:attribute>
+  <xs:attribute name="Level">
+    <xs:annotation>
+      <xs:documentation>指定版本信息的级别（默认为：Project）。</xs:documentation>
+    </xs:annotation>
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="Project">
+          <xs:annotation>
+            <xs:documentation>当前项目。</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="Solution">
+          <xs:annotation>
+            <xs:documentation>当前解决方案。</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:attribute>
+  <xs:attribute name="Revision">
+    <xs:annotation>
+      <xs:documentation>指定 SVN 版本的来源（默认为：Head）。</xs:documentation>
+    </xs:annotation>
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="Base">
+          <xs:annotation>
+            <xs:documentation>当前工作副本的基线版本。</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="Head">
+          <xs:annotation>
+            <xs:documentation>版本库中的最新版本。</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:attribute>
+</xs:complexType>

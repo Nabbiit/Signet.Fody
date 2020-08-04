@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>Signet.Fody</AssemblyName>
+    <RootNamespace>Signet.Fody</RootNamespace>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <AssemblyOriginatorKeyFile>Signet.Fody.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="FodyHelpers" Version="6.2.4" />
+  </ItemGroup>
+</Project>
