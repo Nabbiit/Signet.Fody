@@ -1,11 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <NoWarn>0067;0649</NoWarn>
-    <FileVersion>1.5</FileVersion>
-    <DisableFody>true</DisableFody>
-    <Deterministic>False</Deterministic>
-    <AssemblyVersion>2.0.0.*</AssemblyVersion>
     <TargetFrameworks>net452;netstandard2.0</TargetFrameworks>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Signet.Fody" Version="1.0.1" />
+  </ItemGroup>
 </Project>
