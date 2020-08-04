@@ -6,14 +6,14 @@
     <TargetFrameworks>net452;netstandard2.0</TargetFrameworks>
     <AssemblyOriginatorKeyFile>Signet.pfx</AssemblyOriginatorKeyFile>
     <PackageId>Signet.Fody</PackageId>
-    <Description>使用来自 Git 或 SVN 的版本信息填充 AssemblyInformationalVersionAttribute 特性。</Description>
+    <Description>Adds a AssemblyInformationalVersionAttribute to an assembly.</Description>
     <PackageIconUrl>https://raw.githubusercontent.com/zys529/Signet.Fody/master/Signet.Fody.png</PackageIconUrl>
     <PackageProjectUrl>https://github.com/zys529/Signet.Fody</PackageProjectUrl>
     <PackageOutputPath>$(SolutionDir)NuGets</PackageOutputPath>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageTags>Fody, Signet</PackageTags>
     <NoPackageAnalysis>true</NoPackageAnalysis>
-    <PackageReleaseNotes>使用来自 Git 或 SVN 的版本信息填充 AssemblyInformationalVersionAttribute 特性。</PackageReleaseNotes>
+    <PackageReleaseNotes>移除 SVN 版本信息中的换行符；</PackageReleaseNotes>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Fody" Version="6.2.4" PrivateAssets="none" />

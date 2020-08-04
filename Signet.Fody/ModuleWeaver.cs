@@ -53,7 +53,7 @@ public sealed class ModuleWeaver : BaseModuleWeaver
             if (string.IsNullOrWhiteSpace(output))
                 WriteError($"执行“svn.exe {arguments}”命令后未能获取到有效信息。");
 
-            sb.Append($"{output} ");
+            sb.Append($"{output.Trim()} ");
         }
 
         return sb.ToString().Trim();
