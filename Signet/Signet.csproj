@@ -11,9 +11,13 @@
     <PackageProjectUrl>https://github.com/zys529/Signet.Fody</PackageProjectUrl>
     <PackageOutputPath>$(SolutionDir)NuGets</PackageOutputPath>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageTags>Fody, Signet</PackageTags>
-    <NoPackageAnalysis>true</NoPackageAnalysis>
-    <PackageReleaseNotes>移除 SVN 版本信息中的换行符；</PackageReleaseNotes>
+    <DevelopmentDependency>true</DevelopmentDependency>
+    <PackageTags>Fody, Signet, Git, SVN</PackageTags>
+    <PackageReleaseNotes>
+      1、新增 Kind 配置项，以指定 SVN 版本信息中 last-changed-date 的显示类型；
+      2、消除 FodyPackageReference 不包含 PrivateAssets='All' 的警告；
+      3、更正 Level 配置项错误提示文案；
+    </PackageReleaseNotes>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Fody" Version="6.2.4" PrivateAssets="none" />

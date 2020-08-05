@@ -11,6 +11,25 @@
       </xs:restriction>
     </xs:simpleType>
   </xs:attribute>
+  <xs:attribute name="Kind">
+    <xs:annotation>
+      <xs:documentation>指定 SVN 版本信息中 last-changed-date 的显示类型（默认为：Local）。</xs:documentation>
+    </xs:annotation>
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="Local">
+          <xs:annotation>
+            <xs:documentation>本地时间。</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+        <xs:enumeration value="UTC">
+          <xs:annotation>
+            <xs:documentation>协调通用时间。</xs:documentation>
+          </xs:annotation>
+        </xs:enumeration>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:attribute>
   <xs:attribute name="Level">
     <xs:annotation>
       <xs:documentation>指定版本信息的级别（默认为：Project）。</xs:documentation>
@@ -32,7 +51,7 @@
   </xs:attribute>
   <xs:attribute name="Revision">
     <xs:annotation>
-      <xs:documentation>指定 SVN 版本的来源（默认为：Head）。</xs:documentation>
+      <xs:documentation>指定 SVN 版本信息的来源（默认为：Head）。</xs:documentation>
     </xs:annotation>
     <xs:simpleType>
       <xs:restriction base="xs:string">

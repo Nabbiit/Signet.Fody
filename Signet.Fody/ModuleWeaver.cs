@@ -14,7 +14,7 @@ public sealed class ModuleWeaver : BaseModuleWeaver
 
     public override void Execute()
     {
-        switch (GetAttribute("From", "SVN"))
+        switch (GetConfig("From", "SVN"))
         {
             case "Git": Git(); break;
             case "SVN": SVN(); break;
@@ -41,22 +41,33 @@ public sealed class ModuleWeaver : BaseModuleWeaver
 
     private string GetInfo()
     {
-        var sb = new StringBuilder();
-        var directory = GetDirectory();
-        var revision = GetAttribute("Revision", "Head");
+        var sb = new StringBuilder(48);
+        var arguments = $"info \"{GetDirectory()}\" -r {GetConfig("Revision", "Head")} --show-item";
 
-        foreach (var showItem in new string[] { "last-changed-revision", "last-changed-date", })
+        if (int.TryParse(GetOutput("svn.exe", $"{arguments} last-changed-revision"), out var revision))
         {
-            var arguments = $"info \"{directory}\" -r {revision} --show-item {showItem}";
-            var output = GetOutput("svn.exe", arguments);
-
-            if (string.IsNullOrWhiteSpace(output))
-                WriteError($"执行“svn.exe {arguments}”命令后未能获取到有效信息。");
-
-            sb.Append($"{output.Trim()} ");
+            sb.Append($"{revision} ");
+        }
+        else
+        {
+            WriteError($"执行“svn.exe {arguments} last-changed-revision”命令后未能获取到有效信息。");
         }
 
-        return sb.ToString().Trim();
+        if (DateTime.TryParse(GetOutput("svn.exe", $"{arguments} last-changed-date"), out var dateTime))
+        {
+            sb.Append((GetConfig("Kind", "Local")) switch
+            {
+                "Local" => dateTime.ToLocalTime().ToString("O"),
+                "UTC" => dateTime.ToUniversalTime().ToString("O"),
+                _ => Throw<string>("配置项“Kind”不允许指定为“Local”或“UTC”以外的值。"),
+            });
+        }
+        else
+        {
+            WriteError($"执行“svn.exe {arguments} last-changed-date”命令后未能获取到有效信息。");
+        }
+
+        return sb.ToString();
     }
 
     private T Throw<T>(string message)
@@ -66,11 +77,11 @@ public sealed class ModuleWeaver : BaseModuleWeaver
         return default;
     }
 
-    private string GetDirectory() => (GetAttribute("Level", "Project")) switch
+    private string GetDirectory() => (GetConfig("Level", "Project")) switch
     {
         "Project" => ProjectDirectoryPath,
         "Solution" => SolutionDirectoryPath,
-        _ => Throw<string>("配置项“From”不允许指定为“Git”或“SVN”以外的值。"),
+        _ => Throw<string>("配置项“Level”不允许指定为“Project”或“Solution”以外的值。"),
     };
 
     private string GetOutput(string fileName, string arguments)
@@ -127,5 +138,5 @@ public sealed class ModuleWeaver : BaseModuleWeaver
         customAttributes.Add(new CustomAttribute(ModuleDefinition.ImportReference(type.GetConstructors()[0])) { ConstructorArguments = { constructorArgument, }, });
     }
 
-    private string GetAttribute(string name, string defaultValue) => (Config.Attribute(name) is XAttribute attribute) ? attribute.Value : defaultValue;
+    private string GetConfig(string name, string defaultValue) => (Config.Attribute(name) is XAttribute attribute) ? attribute.Value : defaultValue;
 }
